@@ -1,0 +1,187 @@
+.scene {
+    position: relative;
+    width: 1200px;
+    height: 793px;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    background-image: url(stage0.1.png);
+     transition: background 2s ease;
+}
+
+.sceneLost {
+
+    background-image: url(youlost.png);
+}
+#loseScreen{
+    display: none;
+    position: absolute;
+    width: 1200px;
+    height: 793;
+    left: 0;
+    top: 0;
+    background-color: black;
+    transition: display 2s ease;
+}
+
+#daphne {
+    position: absolute;
+    left: 290px;
+    top: 260px;
+}
+
+#josephine {
+    position: absolute;
+    left: 100px;
+    top: 160px;
+
+}
+
+#wig {
+    position: absolute;
+    left: 100px;
+    top: 160px;
+}
+.wigAnim{
+    animation: wigFall 5s linear forwards;
+}
+@keyframes wigFall{
+    10%{
+        transform: rotate(-30deg) translateX(-50px)
+    }
+    20%{
+        transform: rotate(-30deg) translateX(-50px) translateY(50px);
+    }
+    33%{
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+    40%{
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+        transform: translateX(-60px) translateY(70px) rotate(-15deg);
+    }
+    50%{
+        transform: rotate(15deg) translateY(90px) translateX(-60px);
+    }
+    66%{
+         filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+        transform: rotate(15deg) translateY(90px) translateX(-60px);
+    }
+    75%{
+        transform: rotate(30) translateX(-60px) translateY(100px);
+    }
+    100%{
+        transform: rotate(45) translateX(-60px) translateY(120px);
+    }
+
+}
+
+#band {
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    height: 70%;
+    width: auto;
+}
+
+#zowie {
+    position: absolute;
+    top: 30px;
+    right: -200px;
+}
+
+.zowieAnim1 {
+    /*right:-200px;
+    top:30px;*/
+    animation: zowie1 2s linear forwards;
+}
+
+.zowieAnim2 {
+    /*right: 350px;
+    top: -600px;*/
+    animation: zowie2 2s linear forwards;
+}
+
+.zowieAnim3 {
+    /*top: 10px;
+    left:-600px;*/
+    animation: zowie3 2s linear forwards;
+}
+
+@keyframes zowie1 {
+    to {
+        transform: translateX(-200px) rotate(-35deg);
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+}
+
+@keyframes zowie2 {
+    0% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(180deg) translateY(-300px);
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+}
+
+@keyframes zowie3 {
+    to {
+        transform: translateX(100px) rotate(25deg);
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+}
+
+#sugar {
+    position: absolute;
+
+    left: 500px;
+    top: 150px;
+}
+
+#maestro {
+    position: absolute;
+
+    bottom: 60px;
+    right: 120px;
+}
+
+#crowd {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#curtains {
+    position: absolute;
+    background-image: url(curtinesspritsheet.png);
+    top: 0;
+    left: 0;
+    width: 1200px;
+    height: 893px;
+    animation: open 2s steps(7) forwards;
+}
+
+@keyframes open {
+    to {
+        background-position: -8400px;
+    }
+}
+@keyframes close {
+    to{
+        background-position: 0;
+    }
+}
+
+
+.glow {
+    animation: makeGlow 3s linear forwards;
+}
+
+@keyframes makeGlow {
+    33% {
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+    66% {
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+}
