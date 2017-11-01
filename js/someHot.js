@@ -31,6 +31,7 @@ let lights = document.querySelector('#spotLights');
 //let curtainLeft = document.querySelector("#leftCurtain");
 //let curtainRight = document.querySelector("#rightCurtain");
 let curtains = document.querySelector("#curtains");
+let endCurtains = document.querySelector("#curtainsClose");
 
 
 
@@ -62,11 +63,11 @@ function startSong() {
     console.log("game starts")
     popopido.play();
     popopido.volume = 0.4;
-    curtains.addEventListener('animationend', closeCurtains);
+    curtains.addEventListener('animationend', openCurtains);
 
 }
 
-function closeCurtains() {
+function openCurtains() {
     curtains.style.display = "none";
     setTimeout(skirtEvent, 5000);
 }
@@ -110,6 +111,7 @@ function countDownZowie() {
     console.log("Zowie " + counterZowie)
     counterZowie--;
     if (counterZowie == 0 && !zowieClick) {
+        zowie.removeEventListener('click', delay);
         lose();
 
     } else if (counterZowie > 0 && !zowieClick) {
@@ -126,7 +128,7 @@ function zowieHere() {
     zowieShowedUp = false;
     if (randomZowie > 0 || eventIndex == 2) {
         zowieShowedUp = true;
-        zowieSound.play();
+        //zowieSound.play();
         switch (eventIndex) {
             case 2:
                 console.log("zowie is here 1");
@@ -142,7 +144,6 @@ function zowieHere() {
                 zowie.style.right = "350px";
                 zowie.classList.add("zowieAnim2");
                 zowiePlace++;
-
                 break;
             case 4:
                 console.log("zowie is here 3");
@@ -153,12 +154,18 @@ function zowieHere() {
 
         }
         countDownZowie();
+        zowie.addEventListener('ended', zowieSpeaks);
         zowie.addEventListener('click', delay);
 
     }
 
 
 
+}
+
+function zowieSpeaks() {
+    console.log("zowieSpeaks?")
+    zowieSound.play();
 }
 
 function delay() {
@@ -230,10 +237,12 @@ function popopidoEvent() {
 function countDownPopopido() {
     console.log(counter)
     counter--;
-    if (counter == 0 && (!josephineClick && !daphneClick)) {
+    if (counter == 0 && (!josephineClick || !daphneClick)) {
+        josephine.removeEventListener('click', josephineClick);
+        daphne.removeEventListener('click', daphneClicked);
         lose();
 
-    } else if (counter > 0 && (!josephineClick && !daphneClick)) {
+    } else if (counter > 0 && (!josephineClick || !daphneClick)) {
         setTimeout(countDownPopopido, 1000);
     }
 }
@@ -277,7 +286,7 @@ function popopidoWin() {
         setTimeout(SaxEvent, 5000);
     } else {
         console.log("keep counting?")
-        countDownPopopido();
+        //countDownPopopido();
     }
 }
 
@@ -306,10 +315,12 @@ function countDownSax() {
     console.log(counter)
     counter--;
 
-    if (counter == 0 && !josephineClick && !crowdClick) {
+    if (counter == 0 && (!josephineClick || !crowdClick)) {
+        josephine.removeEventListener('click', josephineClicked);
+        crowd.removeEventListener('click', crowdCliked);
         lose();
 
-    } else if (counter > 0 && (!josephineClick && !crowdClick)) {
+    } else if (counter > 0 && (!josephineClick || !crowdClick)) {
         setTimeout(countDownSax, 1000);
     }
 }
@@ -368,10 +379,10 @@ function countDownWig() {
     console.log(counter)
     counter--;
 
-    if (counter == 0) {
+    if (counter == 0 && (!wigClick || !daphneClick)) {
         lose();
 
-    } else if (counter > 0 && (!wigClick && !daphneClick)) {
+    } else if (counter > 0 && (!wigClick || !daphneClick)) {
         setTimeout(countDownWig, 1000);
     }
 }
@@ -388,6 +399,43 @@ function wigWin() {
 
 function winGame() {
     console.log("hurray");
+    //zowie.classList("zowieAnim4");
+    //sound will you marry me
+
+
+
+    //blackscreen of winning ending
+    //yesButton.addEventListener('click', yesFinal);
+    //noButton.addEventListener('click', noFinal());
+}
+
+function yesFinal() {
+    //sound
+    //kiss
+    //sound.addEventListener('ended', theEnd)
+}
+
+function noFinal() {
+    //sound
+    //kiss
+    //sound.addEventListener('ended', theEnd)
+}
+
+function theEnd() {
+    //endScreen
+    josephine.style.display = "none";
+    daphne.style.display = "none";
+    zowie.style.display = "none";
+    maestro.style.display = "none";
+    sugar.style.display = "none";
+    endCurtains.style.display = "none";
+    band.style.display = "none";
+    crowd.style.display = "none";
+    lights.style.display = "none";
+    crowdLose.pause();
+
+
+    scene.classList.add("sceneWin");
 }
 
 function lose() {
@@ -402,25 +450,26 @@ function lose() {
     maestro.setAttribute('src', 'img/conductorevent.png');
     sugar.setAttribute('src', 'img/marilynShocked.png');
     crowLose.play();
+    setTimeout(curtainsClose, 6000);
     //crowLose.addEventListener('ended', curtainsClose);
-    setTimeout(endScreen, 8000);
+    setTimeout(endLoseScreen, 8000);
 
 
 }
-function curtainsClose(){
-    curtains.style.display="block";
-    curtains.style.backgroundPosition="-8400px";
-    curtains.style.animation="close 2s steps(7) backwards";
+
+function curtainsClose() {
+    endCurtains.style.display = "inline";
+    endCurtains.classList.add("closeSprite");
 }
 
 
-function endScreen() {
+function endLoseScreen() {
     josephine.style.display = "none";
     daphne.style.display = "none";
     zowie.style.display = "none";
     maestro.style.display = "none";
     sugar.style.display = "none";
-
+    endCurtains.style.display = "none";
     band.style.display = "none";
     crowd.style.display = "none";
     lights.style.display = "none";
