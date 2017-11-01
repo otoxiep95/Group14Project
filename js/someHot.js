@@ -11,7 +11,11 @@ let applause = document.querySelector("#applause");
 let daphneEvent = document.querySelector("#daphneEvent");
 let daphneGirlEvent = document.querySelector("#daphneGirlEvent");
 let credits = document.querySelector("#credits");
-
+let marryMe = document.querySelector("#marryMe");
+let imMan = document.querySelector("#imMan");
+let noPerfect = document.querySelector("#noPerfect");
+let kiss = document.querySelector("#kiss");
+let aww = document.querySelector("#aww");
 
 
 //CHARACTERS
@@ -60,7 +64,8 @@ function getRandom() {
 }
 
 function startSong() {
-    console.log("game starts")
+
+    console.log("game starts");
     popopido.play();
     popopido.volume = 0.4;
     curtains.addEventListener('animationend', openCurtains);
@@ -75,7 +80,7 @@ function openCurtains() {
 function skirtEvent() {
     console.log("skirt event starts")
     eventIndex = 1;
-    daphne.setAttribute('src', 'img/daphneevent.gif');
+    daphne.setAttribute('src', 'img/daphnesleg.png');
     daphne.classList.add("glow");
     gasp.play();
     counter = 10;
@@ -154,7 +159,7 @@ function zowieHere() {
 
         }
         countDownZowie();
-        zowie.addEventListener('ended', zowieSpeaks);
+        zowie.addEventListener('animationend', zowieSpeaks);
         zowie.addEventListener('click', delay);
 
     }
@@ -173,6 +178,7 @@ function delay() {
     // if(zowieShowedUp==true){
     zowieClick = true;
     zowieSound.pause();
+    zowie.removeEventListener('animationend', delay);
     switch (eventIndex) {
         case 2:
             zowie.classList.remove("zowieAnim1");
@@ -209,6 +215,7 @@ function surprise() {
     josephine.setAttribute('src', 'img/josephinesurprized.png');
     daphne.setAttribute('src', 'img/daphnesurprised.png');
     booo.play();
+    boo.volume = 0.5;
     setTimeout(popopidoEvent, 700);
 }
 
@@ -264,11 +271,12 @@ function josephineClicked() {
 function daphneClicked() {
     console.log("daphne clicked");
     daphneClick = true;
-    daphne.classList.remove("glow")
+    daphne.classList.remove("glow");
     daphne.setAttribute('src', 'img/daphne.gif');
     if (eventIndex == 2) {
         popopidoWin();
     } else if (eventIndex == 4) {
+        daphne.classList.remove("glowAndTalking");
         daphneEvent.pause();
         daphneGirlEvent.play();
         wigWin();
@@ -359,7 +367,8 @@ function wigEvent() {
     wigClick = false;
     zowieHere();
     wig.classList.add("wigAnim");
-    daphne.classList.add("glow");
+    daphne.classList.add("glowAndTalking")
+    daphne.setAttribute('src', 'img/daphnelooking.png')
     daphneEvent.play();
     setTimeout(countDownWig, 1000);
     wig.addEventListener('click', wigClicked);
@@ -393,36 +402,90 @@ function wigWin() {
         console.log("pass wig");
         wig.removeEventListener('click', wigClicked)
         daphne.removeEventListener('click', daphneClicked);
-        winGame();
+        setTimeout(winGame, 5000);
     }
 }
 
 function winGame() {
+    zowieSound.pause();
     console.log("hurray");
-    //zowie.classList("zowieAnim4");
-    //sound will you marry me
-
-
-
-    //blackscreen of winning ending
-    //yesButton.addEventListener('click', yesFinal);
-    //noButton.addEventListener('click', noFinal());
+    zowie.style.top = "700px";
+    zowie.style.left = "470px";
+    zowie.setAttribute('src', 'img/osgoodlooking.png');
+    zowie.removeEventListener('animationend', zowieSpeaks);
+    zowie.addEventListener('animationend', zowieMarry);
+    zowie.classList.add("zowieAnim4");
 }
 
-function yesFinal() {
-    //sound
-    //kiss
-    //sound.addEventListener('ended', theEnd)
+function zowieMarry() {
+    console.log("marry me");
+    zowie.removeEventListener('animationend', zowieMarry);
+    popopido.pause();
+    setTimeout(marryMeSound, 1000);
+    daphne.setAttribute('src', 'img/daphnesurprised.png');
+    marryMe.addEventListener('ended', butImMan);
 }
 
-function noFinal() {
-    //sound
-    //kiss
-    //sound.addEventListener('ended', theEnd)
+function marryMeSound() {
+    console.log("marry me sound");
+    zowie.style.top="250px";
+    zowie.classList.remove("zowieAnim4");
+    zowie.classList.add("talking");
+    marryMe.play();
 }
+
+function butImMan() {
+    console.log("but i am a man")
+    marryMe.removeEventListener('ended', butImMan);
+    zowie.classList.remove("talking");
+    imMan.play();
+    daphne.classList.add("talking");
+    wig.style.display = "none";
+    daphne.setAttribute('src', 'img/daphneasmen.png');
+    josephine.setAttribute('src', 'img/josephineasmen.png');
+    sugar.setAttribute('src', 'img/marilynShocked.png')
+    imMan.addEventListener('ended', surprisedCrowd);
+}
+
+function surprisedCrowd() {
+    console.log("gasps")
+    daphne.classList.remove("talking");
+    gasp.play();
+    gasp.addEventListener('ended', nobodyPerfect);
+}
+
+function nobodyPerfect() {
+    console.log("nobody perfect");
+    zowie.classList.add("talking");
+    noPerfect.play();
+    noPerfect.addEventListener('ended', crowdAw);
+}
+
+function crowdAw() {
+    console.log("aww")
+    aww.play();
+    zowie.classList.remove("talking");
+    //setTimeout(theEnd, 3000);
+    aww.addEventListener('ended', theEnd);
+}
+
 
 function theEnd() {
-    //endScreen
+    console.log("the end");
+    kiss.play();
+    kiss.addEventListener('ended', applauseCrowd);
+    curtainsClose();
+    endCurtains.addEventListener('animationend', theEndscreen);
+
+}
+
+function applauseCrowd() {
+    applause.play();
+
+}
+
+function theEndscreen() {
+    scene.classList.add("sceneWin");
     josephine.style.display = "none";
     daphne.style.display = "none";
     zowie.style.display = "none";
@@ -432,10 +495,11 @@ function theEnd() {
     band.style.display = "none";
     crowd.style.display = "none";
     lights.style.display = "none";
-    crowdLose.pause();
+    setTimeout(trythis, 3000);
+}
 
-
-    scene.classList.add("sceneWin");
+function trythis() {
+    window.location.href = "credits.html";
 }
 
 function lose() {
@@ -478,7 +542,7 @@ function endLoseScreen() {
 
     scene.classList.add("sceneLost");
     gunShot.play();
-
+    setTimeout(trythis, 3000);
 
 
 

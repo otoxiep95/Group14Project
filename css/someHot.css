@@ -4,7 +4,7 @@
     height: 793px;
     left: 0px;
     top: 0px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-image: url(stage0.1.png);
      transition: background 2s ease;
 }
@@ -12,6 +12,9 @@
 .sceneLost {
 
     background-image: url(youlost.png);
+}
+.sceneWin{
+    background-image: url(theEnd.png);
 }
 #loseScreen{
     display: none;
@@ -27,20 +30,20 @@
 #daphne {
     position: absolute;
     left: 290px;
-    top: 260px;
+    top: 230px;
 }
 
 #josephine {
     position: absolute;
-    left: 100px;
-    top: 160px;
+    left: 120px;
+    top: 140px;
 
 }
 
 #wig {
     position: absolute;
-    left: 100px;
-    top: 160px;
+    left: 120px;
+    top: 140px;
 }
 .wigAnim{
     animation: wigFall 5s linear forwards;
@@ -106,6 +109,12 @@
     left:-600px;*/
     animation: zowie3 2s linear forwards;
 }
+.zowieAnim4{
+    bottom: 50px;
+    left: 470px;
+    animation: zowie4 2s linear forwards;
+
+}
 
 @keyframes zowie1 {
     to {
@@ -128,6 +137,11 @@
     to {
         transform: translateX(100px) rotate(25deg);
         filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+}
+@keyframes zowie4{
+    to{
+        transform: translateY(-450px)
     }
 }
 
@@ -183,7 +197,32 @@
     }
 }
 
+.talking{
+    transform-origin: bottom;
+    animation: talking 1s forwards;
+}
+@keyframes talking{
+    33%{
+        transform: rotate(5deg);
+    }
+    66%{
+        transform: rotate(-5deg);
+    }
 
+}
+.glowAndTalking{
+    animation: glowtalk 3s forwards;
+}
+@keyframes glowtalk{
+    33% {
+        transform: rotate(5deg);
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+    66% {
+        transform: rotate(-5deg);
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 0, 0.8));
+    }
+}
 
 
 .glow {
