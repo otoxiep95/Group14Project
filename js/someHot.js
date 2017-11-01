@@ -57,7 +57,12 @@ var randomZowie = -1;
 var zowiePlace = 0;
 var eventIndex = 0;
 
-curtains.addEventListener('animationstart', startSong);
+//window.onload= function(){pageload();}
+
+function pageLoad(){
+    curtains.addEventListener('animationstart', startSong);
+}
+
 
 function getRandom() {
     randomZowie = Math.random() * 100;
@@ -83,7 +88,7 @@ function skirtEvent() {
     daphne.setAttribute('src', 'img/daphnesleg.png');
     daphne.classList.add("glow");
     gasp.play();
-    counter = 10;
+    counter = 5;
     setTimeout(countDownSkirt, 1000);
     daphne.addEventListener('click', winSkirt);
 }
@@ -128,7 +133,7 @@ function zowieHere() {
     console.log("zowie starts");
     console.log("zowiePlace=" + zowiePlace)
     getRandom();
-    counterZowie = 10;
+    counterZowie = 7;
     zowieClick = false;
     zowieShowedUp = false;
     if (randomZowie > 0 || eventIndex == 2) {
@@ -226,7 +231,7 @@ function popopidoEvent() {
 
     eventIndex = 2;
 
-    counter = 10;
+    counter = 7;
     daphneClick = false;
     josephineClick = false;
     zowieHere();
@@ -302,7 +307,7 @@ function SaxEvent() {
     console.log("sax event starts")
     eventIndex = 3;
     console.log(eventIndex);
-    counter = 10;
+    counter = 7;
     josephineClick = false;
     crowdClick = false;
     zowieHere();
@@ -362,7 +367,7 @@ function wigEvent() {
     console.log("wig event starts")
     eventIndex = 4;
     console.log(eventIndex);
-    counter = 10;
+    counter = 7;
     daphneClick = false;
     wigClick = false;
     zowieHere();
@@ -545,6 +550,6 @@ function endLoseScreen() {
     setTimeout(trythis, 3000);
 
 
-
-
 }
+
+pageLoad();

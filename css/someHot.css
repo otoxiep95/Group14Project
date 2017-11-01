@@ -4,7 +4,7 @@
     height: 793px;
     left: 0px;
     top: 0px;
-    /*overflow: hidden;*/
+    overflow: hidden;
     background-image: url(stage0.1.png);
      transition: background 2s ease;
 }

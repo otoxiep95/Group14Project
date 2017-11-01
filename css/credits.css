@@ -1,0 +1,60 @@
+.scene {
+    position: relative;
+    width: 1200px;
+    height: 793px;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+
+}
+
+#credits {
+    position: absolute;
+    font-family: garamond;
+    font-size: 20pt;
+    color: #E7D23B;
+    text-align: center;
+    padding: 0px 235px 0px 235px;
+    bottom: 150px;
+    left: 175px;
+    top: 300px;
+}
+
+#theEnd {
+    position: absolute;
+    display: block;
+    /*overflow: hidden;*/
+}
+
+
+
+#blackScreen {
+    position: absolute;
+    text-align: center;
+    width: 1200px;
+    height: 793px;
+    top: 793px;
+    background-image: url(black_screen.png);
+    display: block;
+   /* overflow: hidden;*/
+}
+
+.translation {
+    animation: translationScreen 10s linear forwards;
+}
+
+@keyframes translationScreen {
+    to {
+        transform: translateY(-793px)
+    }
+}
+
+.translationCredits {
+    animation: translationCredits 30s linear forwards;
+}
+
+@keyframes translationCredits {
+    to {
+        transform: translateY(-3400px)
+    }
+}
