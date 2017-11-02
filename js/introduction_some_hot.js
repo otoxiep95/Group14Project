@@ -10,7 +10,7 @@ let button = document.querySelector ("#button");
 let gangster = document.querySelector ("#gangster");
 let subtitles = document.querySelector (".subtitles");
 let applause = document.querySelector ("#applause");
-
+let lion = document.querySelector("#lion");
 
 
 
@@ -19,7 +19,10 @@ let applause = document.querySelector ("#applause");
 
 
 function pageLoad() {
-
+    lion.play();
+    lion.addEventListener('ended', applauseFunc);
+}
+function applauseFunc(){
     applause.play();
     applause.addEventListener('ended', gangsterTalk);
 

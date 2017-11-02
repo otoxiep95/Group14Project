@@ -164,6 +164,24 @@
     bottom: 0;
     left: 0;
 }
+#subBox{
+    position: absolute;
+    text-align: center;
+    width: 1200px;
+    height: 100px;
+    bottom: 0;
+    left: 0;
+}
+p {
+    display: inline;
+    font-family:garamond;
+    font-size:25pt;
+    color:#E7D23B;
+
+
+
+
+}
 
 #curtains {
     position: absolute;
@@ -190,6 +208,23 @@
 .closeSprite{
     animation: open 2s steps(7) forwards;
 }
+#button{
+
+    position:absolute;
+    font-family:garamond;
+    font-size:20pt;
+    color:#E7D23B;
+    text-decoration: none;
+    border:2px solid;
+    border-radius:10%;
+    text-align:center;
+    left: 44%;
+    top: 75%;
+    padding: 25px;
+    display:none;
+    transition: all 2s ease;
+}
+
 
 @keyframes open {
     to {

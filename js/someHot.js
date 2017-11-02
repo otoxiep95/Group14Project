@@ -14,7 +14,6 @@ let credits = document.querySelector("#credits");
 let marryMe = document.querySelector("#marryMe");
 let imMan = document.querySelector("#imMan");
 let noPerfect = document.querySelector("#noPerfect");
-let kiss = document.querySelector("#kiss");
 let aww = document.querySelector("#aww");
 
 
@@ -37,6 +36,8 @@ let lights = document.querySelector('#spotLights');
 let curtains = document.querySelector("#curtains");
 let endCurtains = document.querySelector("#curtainsClose");
 
+let subs = document.querySelector("p");
+let restartButton = document.querySelector("#button");
 
 
 //Click
@@ -59,7 +60,7 @@ var eventIndex = 0;
 
 //window.onload= function(){pageload();}
 
-function pageLoad(){
+function pageLoad() {
     curtains.addEventListener('animationstart', startSong);
 }
 
@@ -122,7 +123,7 @@ function countDownZowie() {
     counterZowie--;
     if (counterZowie == 0 && !zowieClick) {
         zowie.removeEventListener('click', delay);
-        lose();
+        //lose();
 
     } else if (counterZowie > 0 && !zowieClick) {
         setTimeout(countDownZowie, 1000);
@@ -175,13 +176,16 @@ function zowieHere() {
 
 function zowieSpeaks() {
     console.log("zowieSpeaks?")
+    subs.textContent = "-Zowie!";
     zowieSound.play();
 }
 
 function delay() {
     console.log("zowie clicked")
     // if(zowieShowedUp==true){
+    subs.textContent = " ";
     zowieClick = true;
+    zowieShowedUp = false;
     zowieSound.pause();
     zowie.removeEventListener('animationend', delay);
     switch (eventIndex) {
@@ -220,6 +224,7 @@ function surprise() {
     josephine.setAttribute('src', 'img/josephinesurprized.png');
     daphne.setAttribute('src', 'img/daphnesurprised.png');
     booo.play();
+    subs.textContent = "(Crowd) -Boo!";
     boo.volume = 0.5;
     setTimeout(popopidoEvent, 700);
 }
@@ -281,6 +286,7 @@ function daphneClicked() {
     if (eventIndex == 2) {
         popopidoWin();
     } else if (eventIndex == 4) {
+        subs.textContent = " ";
         daphne.classList.remove("glowAndTalking");
         daphneEvent.pause();
         daphneGirlEvent.play();
@@ -292,13 +298,14 @@ function daphneClicked() {
 
 function popopidoWin() {
     if (josephineClick == true && daphneClick == true) {
+        subs.textContent = " ";
         console.log("passed");
         boo.pause();
         maestro.setAttribute('src', 'img/conductor.gif');
         sugar.setAttribute('src', 'img/marilyn.gif');
-        setTimeout(SaxEvent, 5000);
+        setTimeout(SaxEvent, 2000);
     } else {
-        console.log("keep counting?")
+        console.log("keep counting?");
         //countDownPopopido();
     }
 }
@@ -375,6 +382,7 @@ function wigEvent() {
     daphne.classList.add("glowAndTalking")
     daphne.setAttribute('src', 'img/daphnelooking.png')
     daphneEvent.play();
+    subs.textContent = "...Josephine!";
     setTimeout(countDownWig, 1000);
     wig.addEventListener('click', wigClicked);
     daphne.addEventListener('click', daphneClicked);
@@ -433,7 +441,8 @@ function zowieMarry() {
 
 function marryMeSound() {
     console.log("marry me sound");
-    zowie.style.top="250px";
+    subs.textContent = "- Will you marry me ?";
+    zowie.style.top = "250px";
     zowie.classList.remove("zowieAnim4");
     zowie.classList.add("talking");
     marryMe.play();
@@ -441,6 +450,7 @@ function marryMeSound() {
 
 function butImMan() {
     console.log("but i am a man")
+    subs.textContent = "- I'm a man !";
     marryMe.removeEventListener('ended', butImMan);
     zowie.classList.remove("talking");
     imMan.play();
@@ -454,6 +464,7 @@ function butImMan() {
 
 function surprisedCrowd() {
     console.log("gasps")
+    subs.textContent = "(Crowd) - OHH !";
     daphne.classList.remove("talking");
     gasp.play();
     gasp.addEventListener('ended', nobodyPerfect);
@@ -461,6 +472,7 @@ function surprisedCrowd() {
 
 function nobodyPerfect() {
     console.log("nobody perfect");
+    subs.textContent = "- Nobody is perfect...";
     zowie.classList.add("talking");
     noPerfect.play();
     noPerfect.addEventListener('ended', crowdAw);
@@ -469,6 +481,7 @@ function nobodyPerfect() {
 function crowdAw() {
     console.log("aww")
     aww.play();
+    subs.textContent = "(Crowd) - Awwww";
     zowie.classList.remove("talking");
     //setTimeout(theEnd, 3000);
     aww.addEventListener('ended', theEnd);
@@ -477,17 +490,14 @@ function crowdAw() {
 
 function theEnd() {
     console.log("the end");
-    kiss.play();
-    kiss.addEventListener('ended', applauseCrowd);
+
+    applause.play();
+    subs.textContent = " ";
     curtainsClose();
     endCurtains.addEventListener('animationend', theEndscreen);
 
 }
 
-function applauseCrowd() {
-    applause.play();
-
-}
 
 function theEndscreen() {
     scene.classList.add("sceneWin");
@@ -519,10 +529,11 @@ function lose() {
     maestro.setAttribute('src', 'img/conductorevent.png');
     sugar.setAttribute('src', 'img/marilynShocked.png');
     crowLose.play();
+
     setTimeout(curtainsClose, 6000);
     //crowLose.addEventListener('ended', curtainsClose);
     setTimeout(endLoseScreen, 8000);
-
+    subs.textContent = "- Hey, what happen ? ... Get those two guys !";
 
 }
 
@@ -544,12 +555,18 @@ function endLoseScreen() {
     lights.style.display = "none";
     crowdLose.pause();
 
-
+    subs.textContent = " ";
     scene.classList.add("sceneLost");
+
     gunShot.play();
-    setTimeout(trythis, 3000);
+    gunShot.addEventListener('ended', restartGame);
 
 
+
+}
+
+function restartGame() {
+    restartButton.style.display = "inline";
 }
 
 pageLoad();
